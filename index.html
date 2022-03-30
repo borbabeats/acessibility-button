@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <!--folha de estilo para formas-->
+    <link rel="stylesheet" href="./src/styles.css" />
+
+    <!--folha de estilo para contraste-->
+    <link rel="stylesheet" href="./src/contrast.css" />
+
+    <!--arquivo js para contraste-->
+    <script src="./src/index.js"></script>
+
+    <!--widget gov para o vlibras-->
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
+    <!--fontawesome para icones-->
+    <script
+      src="https://kit.fontawesome.com/4ca902f2ad.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--jquery-->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"
+    ></script>
+
+    <!--acionar vlibras atraves de outro botão-->
+    <script type="text/javascript">
+      $(function () {
+        $("[id*=webLibras]").on("click", function () {
+          setTimeout(function () {
+            $("[id*=pressing]").trigger("click");
+          }, 300);
+        });
+
+        $("[id*=pressing]").on("click", function () {});
+      });
+    </script>
+
+    <!--Alterar tamanho da fonte-->
+    <script>
+      window.onload = function () {
+        var elementBody = document.querySelector("body");
+        var elementBtnIncreaseFont = document.getElementById("increase-font");
+        var elementBtnDecreaseFont = document.getElementById("decrease-font");
+        // Padrão de tamanho, equivale a 100% do valor definido no Body
+        var fontSize = 100;
+        // Valor de incremento ou decremento, equivale a 10% do valor do Body
+        var increaseDecrease = 10;
+
+        // Evento de click para aumentar a fonte
+        elementBtnIncreaseFont.addEventListener("click", function (event) {
+          fontSize = fontSize + increaseDecrease;
+          elementBody.style.fontSize = fontSize + "%";
+        });
+
+        // Evento de click para diminuir a fonte
+        elementBtnDecreaseFont.addEventListener("click", function (event) {
+          fontSize = fontSize - increaseDecrease;
+          elementBody.style.fontSize = fontSize + "%";
+        });
+      };
+    </script>
+
+    <!-- exibir/esconder menu-->
+    <script>
+      var btn = document.querySelector("buttonShowHide");
+      var container = document.querySelector(".popupAcessibility");
+
+      btn.addEventListener("click", function () {
+        if (popupAcessibility.style.display === "block") {
+          popupAcessibility.style.display = "none";
+        } else {
+          popupAcessibility.style.display = "block";
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="comandButton">
+      <button class="button" id="buttonShowHide">
+        <i class="fa-solid fa-universal-access"></i>
+        <p>acessibilidade</p>
+      </button>
+
+      <div class="popupAcessibility">
+        <div
+          class="card"
+          id="altocontraste"
+          accesskey="1"
+          onclick="window.toggleContrast()"
+          onkeydown="window.toggleContrast()"
+        >
+          <i class="fa-solid fa-circle-half-stroke"></i>
+          <span>Alto Contraste</span>
+        </div>
+        <div class="card" id="webLibras">
+          <i class="fa-solid fa-hands-asl-interpreting"></i>
+          <span>WebLibras</span>
+        </div>
+        <div class="card" id="navFocus">
+          <i class="fa-solid fa-keyboard"></i>
+          <span>Destacar foco da navegação</span>
+        </div>
+        <div class="card" id="fontSize">
+          <button
+            name="increase-font"
+            id="increase-font"
+            title="Aumentar fonte"
+          >
+            A +
+          </button>
+          <button
+            name="decrease-font"
+            id="decrease-font"
+            title="Diminuir fonte"
+          >
+            A -
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div vw class="enabled">
+      <div vw-access-button class="active" id="pressing"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+
+    <div class="texto">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+        sapiente nisi ad iusto perspiciatis magni, totam laboriosam dolorum! Ut
+        cum, magni rem adipisci hic deleniti provident dolore iure deserunt
+        beatae?
+      </p>
+    </div>
+    <div class="texto">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+        sapiente nisi ad iusto perspiciatis magni, totam laboriosam dolorum! Ut
+        cum, magni rem adipisci hic deleniti provident dolore iure deserunt
+        beatae?
+      </p>
+    </div>
+
+    <script>
+      new window.VLibras.Widget("https://vlibras.gov.br/app");
+    </script>
+  </body>
+</html>
